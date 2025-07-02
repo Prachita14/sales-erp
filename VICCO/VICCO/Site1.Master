@@ -1,0 +1,297 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="RCandJJ.Site1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Vicco Laboratories</title>
+    <link rel="icon" href="images/loggeduser.png" type="img/jpg" />
+    <link rel="stylesheet" href="../lib/Hover/hover.css" />
+    <link rel="stylesheet" href="../lib/fontawesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="../lib/weather-icons/css/weather-icons.css" />
+    <link rel="stylesheet" href="../lib/jquery-toggles/toggles-full.css" />
+    <link rel="stylesheet" href="../lib/select2/select2.css" />
+    <link rel="stylesheet" href="../lib/morrisjs/morris.css" />
+    <link rel="stylesheet" href="../css/quirk.css?v=21.12.2019" />
+    <link rel="stylesheet" href="../lib/jquery.steps/jquery.steps.css" />
+    <link rel="stylesheet" href="../lib/jquery-ui/jquery-ui.css" />
+    <script src="alertifyjs/alertify.js" type="text/javascript"></script>
+    <link href="alertifyjs/css/alertify.css" rel="stylesheet" type="text/css" />
+    <link href="alertifyjs/css/themes/default.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../lib/modernizr/modernizr.js"></script>
+    <link rel="stylesheet" href="../lib/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" />
+    <style type="text/css">
+        .control-label
+        {
+            padding-top: 10px;
+        }
+        
+        #ctl00_ContentPlaceHolder1_ReportViewer1_ctl05
+        {
+            position: absolute;
+            width: 96%;
+            z-index: 9;
+        }
+        #ctl00_ContentPlaceHolder1_ReportViewer1_ctl09
+        {
+            margin-top: 30px;
+        }
+        #ctl00_ContentPlaceHolder1_ReportViewer2_ctl05
+        {
+            position: absolute;
+            width: 96%;
+            z-index: 9;
+        }
+        #ctl00_ContentPlaceHolder1_ReportViewer2_ctl09
+        {
+            margin-top: 30px;
+        }
+        #ctl00_ContentPlaceHolder1_ReportViewer1
+        {
+            margin-top: 10px;
+        }
+        
+        #material
+        {
+            width: auto;
+            float: left;
+            margin-bottom: 10px;
+        }
+        
+        .alert-success
+        {
+            width: auto;
+            margin-left: 5px;
+            padding: 5px;
+        }
+        .close
+        {
+            float: none;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div class="headerpanel">
+        <div class="logopanel">
+            <h2>
+                <a href="Home.aspx" style="margin-left: 40px;">
+                    <img src="images/vicco_logo.png" alt="logo" width="60%" /></a></h2>
+        </div>
+        <div class="headerbar">
+            <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+            <div class="header-right">
+                <ul class="headermenu">
+                    <li>
+                        <asp:linkbutton id="LinkButton1" runat="server" xmlns:asp="#unknown" class="btn btn-default"
+                            causesvalidation="false" onclientclick="JavaScript: window.history.back(1); return false;"
+                            style="background-color: #fc8414; margin-right: 20px; height: auto; margin-top: 15px;
+                            width: 100px; color: White;">Back</asp:linkbutton>
+                    </li>
+                    <li>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-logged" data-toggle="dropdown">
+                                <img src="images/loggeduser.png" alt="" />
+                                Vicco <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="ResetPassword.aspx"><i class="fa fa-cog"></i>Account Settings</a></li>
+                                <%--<li><a href="ViewAdminProfile.aspx"><i class="fa fa-user"></i>View Profile</a></li>--%>
+                                <li>
+                                    <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click" CausesValidation="false">
+                                    <i class="fa fa-sign-out"></i> Log Out</asp:LinkButton></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <section>
+  <div class="leftpanel">
+    <div class="leftpanelinner">      
+      <div class="tab-content">
+        <div class="tab-pane active" id="mainmenu">         
+          <ul class="nav nav-pills nav-stacked nav-quirk">
+          <li class="active"><a href="Home.aspx"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+          <li runat="server" id="Li4" class="nav-parent"><a href=""><i class="fa fa-file-text"></i> <span>Manage Dispatch</span></a>
+              <ul class="children">               
+                <li><a href="UploadCsv.aspx?type=admindispatch">Upload CSV</a></li>
+                <li><a href="DispatchToStockist.aspx">Dispatch Report</a></li>
+                <li><a href="UploadCsv.aspx?type=initial">Upload Initial CSV</a></li>
+                <li><a href="DispatchInitialToStockist.aspx">Initial Report</a></li>
+              </ul>
+            </li>        
+           <li runat="server" id="gst"><a href="MaterialReturnReport.aspx"><i class="fa fa-shopping-cart"></i> <span>Material Return</span></a> </li>           
+           <li runat="server" id="Li1" class="nav-parent"><a href=""><i class="fa fa-shopping-cart"></i> <span>Manage Material</span></a>
+              <ul class="children">
+                <li><a href="Material.aspx">Add Material</a></li>
+                <li><a href="UploadCsv.aspx?type=material">Upload CSV</a></li>
+                <li><a href="MaterialReport.aspx">Material Report</a></li>
+              </ul>
+            </li>
+            <li runat="server" id="Li2" class="nav-parent"><a href=""><i class="fa fa-user"></i> <span>Manage Super Stockist</span></a>
+              <ul class="children">
+                <li><a href="Stockist.aspx">Add Stockist</a></li>
+                <li><a href="UploadCsv.aspx?type=stockist">Upload CSV</a></li>
+                <li><a href="StockistReport.aspx">Stockist Report</a></li>
+                <li><a href="SupperInvoice.aspx"><span>Stockist Invoice</span></a> </li>
+                  <li><a href="AutogeneratedSuperpo.aspx"><span>Auto Generated PO</span></a> </li>
+                  <li><a href="Setsuperminstock.aspx"><span>Set Super Min Stock</span></a> </li>
+              </ul>
+            </li> 
+            <li runat="server" id="Li3" class="nav-parent"><a href=""><i class="fa fa-users"></i> <span>Manage Distributor</span></a>
+              <ul class="children">
+                <li><a href="Distributor.aspx">Add Distributor</a></li>
+                <li><a href="UploadCsv.aspx?type=distributor">Upload CSV</a></li>
+                <li><a href="DistributorReport.aspx">Distributor Report</a></li>
+              </ul>
+            </li>
+            <li runat="server" id="Li5" class="nav-parent"><a href=""><i class="fa fa-users"></i> <span>Authorization</span></a>
+              <ul class="children">
+                <li><a href="EmployeeMaster.aspx">Add Employee</a></li>
+                <li><a href="EmployeeMasterReport.aspx">Employee Report</a></li>
+                <li><a href="RoleControl.aspx">Role Control</a></li>
+                  <li><a href="MappingReport.aspx">Mapping Report</a></li>
+              </ul>
+            </li>
+            <li runat="server" id="Li7" class="nav-parent"><a href=""><i class="fa fa-bullseye"></i> <span>Target</span></a>
+              <ul class="children">
+                <li><a href="AddTarget.aspx">Add Target</a></li>
+                <li><a href="Uplodedtarget.aspx">Uploaded Target</a></li>
+              </ul>
+            </li>
+            <li runat="server" id="Login" class="nav-parent"><a href=""><i class="fa fa-file-text"></i> <span>Report</span></a>
+              <ul class="children">            
+                <li><a href="CriteriaReportAdmin.aspx">Sales Register</a></li>                         
+              <li><a href="SalesSummary.aspx">Sales Summary</a></li>
+                <li><a href="PriceReport.aspx">Price</a></li>
+                <li><a href="SaleStockReport.aspx">Stock And Sale</a></li>
+                <li><a href="SaleStockDistributor.aspx">Stock And Sale Secondary</a></li>
+                <li><a href="SecondSaleReportQuantity.aspx">Product wise secondary sale report (Quantity)</a></li>
+                <li><a href="SecondSaleReportValue.aspx">Product wise secondary sale report (Value)</a></li>
+                    <li><a href="SecondSaleReportQuantityNew.aspx">Product wise secondary sale report (Quantity) <span class="text-danger"> New</span></a></li>
+                <li><a href="SecondSaleReportValueNew.aspx">Product wise secondary sale report (Value) <span class="text-danger"> New</span></a></li>
+                <li><a href="PartyWiseSaleReportQuantity.aspx">Party wise sale quantity details</a></li>
+                <li><a href="PartyWiseSaleReportValue.aspx">Party wise sale value details</a></li>
+                <li><a href="ItemWiseSecondSaleReport.aspx">Item wise second sale report</a></li>
+                <li><a href="TargetReport.aspx">Target report</a></li>
+                <li><a href="TargetvsSale.aspx">Target Vs Sale</a></li>
+                <li><a href="DisplayReport.aspx">Display Report</a></li>
+                <li><a href="HeadReport.aspx">Product Head Report</a></li>
+                <li><a href="StockistBilledReport.aspx">Stockist Billed Report</a></li>
+                <li><a href="BilledReport.aspx">Billed Report</a></li>
+              </ul>
+            </li>
+            <li runat="server" id="Li6" class="nav-parent"><a href=""><i class="fa fa-file-text"></i> <span>Notice Board</span></a>
+              <ul class="children">            
+                <li><a href="Notice.aspx">Add Notice</a></li>
+              </ul>
+            </li>
+          
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </section>
+    <script src="js/jquery-3.3.1.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../lib/jquery-ui/jquery-ui.js"></script>
+    <script type="text/javascript" src="../lib/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../lib/jquery-toggles/toggles.js"></script>
+    <script type="text/javascript" src="../lib/datatables/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="../lib/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script type="text/javascript" src="../lib/morrisjs/morris.js"></script>
+    <script type="text/javascript" src="../lib/raphael/raphael.js"></script>
+    <script type="text/javascript" src="../lib/flot/jquery.flot.js"></script>
+    <script type="text/javascript" src="../lib/flot/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="../lib/flot-spline/jquery.flot.spline.js"></script>
+    <script type="text/javascript" src="../lib/jquery-knob/jquery.knob.js"></script>
+    <script type="text/javascript" src="../js/quirk.js"></script>
+    <script type="text/javascript" src="../lib/jquery-autosize/autosize.js"></script>
+    <script type="text/javascript" src="../lib/select2/select2.js"></script>
+    <!-- start - This is for export functionality only -->
+    <script type="text/JavaScript" src="../lib/datatables/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="../lib/datatables/buttons.flash.min.js"></script>
+    <script type="text/JavaScript" src="../lib/datatables/jszip.min.js"></script>
+    <script type="text/javascript" src="../lib/datatables/pdfmake.min.js"></script>
+    <script type="text/JavaScript" src="../lib/datatables/vfs_fonts.js"></script>
+    <script type="text/JavaScript" src="../lib/datatables/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="../lib/datatables/buttons.print.min.js"></script>
+    <!-- end - This is for export functionality only -->
+    <script type="text/javascript">
+        $(function () {
+            $("select").select2({ tags: false });
+        });
+
+        function auto() {
+            $("select").select2({ tags: false });
+
+            $('#ContentPlaceHolder1_grdReport').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+            });
+
+            //var table2 = $('.role table').DataTable({
+            //    "paging": false,
+            //    "info": false,
+            //    "ordering": false,
+            //    "dom": '<"search-box"f>'
+            //});
+
+        };
+
+        $(document).ready(function () {
+
+            'use strict';
+
+            $('#ContentPlaceHolder1_grdReport').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+            }); 
+           
+
+        });
+
+        var table2 = $('.role table').DataTable({
+            "paging": false,
+            "info": false,
+            "ordering": false,
+            "dom": '<"search-box"f>'
+        });
+
+        function Clearsearch() {
+            $("input[type=search]").val("");
+            table2.search('').draw();
+
+            callbtn();
+        }
+
+        function Clearsearch1() {
+            $("input[type=search]").val("");
+            table2.search('').draw();
+
+            callbtn1();
+        }
+        function Clearsearch2() {
+            $("input[type=search]").val("");
+            table2.search('').draw();
+
+            callbtn2();
+        }
+    </script>
+    </form>
+</body>
+</html>

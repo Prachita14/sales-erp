@@ -1,0 +1,780 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ReportData" targetNamespace="http://tempuri.org/ReportData.xsd" xmlns:mstns="http://tempuri.org/ReportData.xsd" xmlns="http://tempuri.org/ReportData.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ViccoConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ViccoConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ViccoConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PURCHASE_ORDERTableAdapter" GeneratorDataComponentClassName="PURCHASE_ORDERTableAdapter" Name="PURCHASE_ORDER" UserDataComponentName="PURCHASE_ORDERTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ViccoConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT S.NAME AS SUPPER_STOCKIST,D.NAME+' ('+D.CODE+')' AS DISTRIBUTOR,D.DISTRIBUTOR_TYPE,D.DISTRICT,DATENAME(month,PO.DATE)+' '+DATENAME(YEAR,PO.DATE) AS MONTH_YEAR,
+		M.MATERIAL_NAME+' ('+M.MATERIAL_CODE+')' AS MATERIAL_NAME,CAST(ISNULL(POP.AMOUNT,0)+(ISNULL(POP.AMOUNT,0)*0.05) AS DECIMAL(18,2)) TOTAL,PO.PO_NO AS INVOICE_NO
+		FROM PURCHASE_ORDER PO JOIN PURCHASE_ORDER_PRODUCT POP ON POP.PURCHASEORDER_ID=PO.PURCHASEORDER_ID 
+		JOIN SUPPER_STOCKIST S ON S.STOCKIST_ID=PO.STOCKIST_ID JOIN DISTRIBUTOR D ON D.DISTRIBUTOR_ID=PO.CUSTOMER_ID
+		JOIN MATERIAL M ON M.MATERIAL_ID=POP.PRODUCT_ID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="SUPPER_STOCKIST" DataSetColumn="SUPPER_STOCKIST" />
+              <Mapping SourceColumn="DISTRIBUTOR" DataSetColumn="DISTRIBUTOR" />
+              <Mapping SourceColumn="MONTH_YEAR" DataSetColumn="MONTH_YEAR" />
+              <Mapping SourceColumn="MATERIAL_NAME" DataSetColumn="MATERIAL_NAME" />
+              <Mapping SourceColumn="INVOICE_NO" DataSetColumn="INVOICE_NO" />
+              <Mapping SourceColumn="DISTRIBUTOR_TYPE" DataSetColumn="DISTRIBUTOR_TYPE" />
+              <Mapping SourceColumn="TOTAL" DataSetColumn="TOTAL" />
+              <Mapping SourceColumn="DISTRICT" DataSetColumn="DISTRICT" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ViccoConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT S.NAME+' ('+S.CODE+')' AS SUPPER_STOCKIST,PO.DATE,PO.PO_NO AS INVOICE_NO,D.NAME+' ('+D.CODE+')' AS DISTRIBUTOR,D.DISTRICT,
+		M.MATERIAL_NAME+' ('+M.MATERIAL_CODE+')' AS MATERIAL_NAME,POP.QTY,PO.GST_NO AS SALES_OFFICER FROM PURCHASE_ORDER PO JOIN PURCHASE_ORDER_PRODUCT POP 
+		ON PO.PURCHASEORDER_ID=POP.PURCHASEORDER_ID JOIN SUPPER_STOCKIST S ON S.STOCKIST_ID=PO.STOCKIST_ID
+		JOIN DISTRIBUTOR D ON D.DISTRIBUTOR_ID=PO.CUSTOMER_ID JOIN MATERIAL M ON M.MATERIAL_ID=POP.PRODUCT_ID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="SUPPER_STOCKIST" DataSetColumn="SUPPER_STOCKIST" />
+              <Mapping SourceColumn="DATE" DataSetColumn="DATE" />
+              <Mapping SourceColumn="INVOICE_NO" DataSetColumn="INVOICE_NO" />
+              <Mapping SourceColumn="DISTRIBUTOR" DataSetColumn="DISTRIBUTOR" />
+              <Mapping SourceColumn="DISTRICT" DataSetColumn="DISTRICT" />
+              <Mapping SourceColumn="MATERIAL_NAME" DataSetColumn="MATERIAL_NAME" />
+              <Mapping SourceColumn="QTY" DataSetColumn="TOTAL" />
+              <Mapping SourceColumn="SALES_OFFICER" DataSetColumn="SALES_OFFICER" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable2TableAdapter" GeneratorDataComponentClassName="DataTable2TableAdapter" Name="DataTable2" UserDataComponentName="DataTable2TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ViccoConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT M.MATERIAL_NAME+' ('+M.MATERIAL_CODE+')' AS MATERIAL_NAME,SUM(POP.QTY) QUANTITY_IN_PCS,
+		SUM(POP.QTY)/(DATEDIFF(MONTH,ISNULL(@FROM_DATE,GETDATE()),ISNULL(@TO_DATE,GETDATE()))) AS AVG_QUANTITY_IN_PCS,	
+		
+		SUM(POP.QTY)/M.ALTERNATIVE_UOM_QTY AS SHIPPED_QUANTITY,		
+
+		FLOOR(SUM(CAST(ISNULL(POP.AMOUNT,0)+(ISNULL(AMOUNT,0)*(ISNULL(M.SGST,0)+ISNULL(M.CGST,0)))/100 AS DECIMAL(18,2)))/
+		(SUM(POP.QTY)/M.ALTERNATIVE_UOM_QTY)) AS AVG_PER_CASE,
+
+		SUM(CAST(ISNULL(POP.AMOUNT,0)+(ISNULL(AMOUNT,0)*(ISNULL(M.SGST,0)+ISNULL(M.CGST,0)))/100 AS DECIMAL(18,2))) AS TOTAL,
+		SUM(CAST(ISNULL(POP.AMOUNT,0)+(ISNULL(AMOUNT,0)*(ISNULL(M.SGST,0)+ISNULL(M.CGST,0)))/100 AS DECIMAL(18,2)))/
+		(DATEDIFF(MONTH,ISNULL(@FROM_DATE,GETDATE()),ISNULL(@TO_DATE,GETDATE()))) AS VALUE_AVG,D.REGION,
+		S.NAME AS SUPPER_STOCKIST
+		FROM PURCHASE_ORDER PO JOIN PURCHASE_ORDER_PRODUCT POP ON PO.PURCHASEORDER_ID=POP.PURCHASEORDER_ID JOIN MATERIAL M ON M.MATERIAL_ID=POP.PRODUCT_ID
+		JOIN SUPPER_STOCKIST S ON S.STOCKIST_ID=PO.STOCKIST_ID JOIN DISTRIBUTOR D ON PO.CUSTOMER_ID=D.DISTRIBUTOR_ID GROUP BY S.NAME,M.MATERIAL_NAME,M.MATERIAL_CODE,M.ALTERNATIVE_UOM_QTY,D.REGION</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="FROM_DATE" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="DateTime" Direction="Input" ParameterName="@FROM_DATE" Precision="0" Scale="0" Size="0" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="TO_DATE" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="DateTime" Direction="Input" ParameterName="@TO_DATE" Precision="0" Scale="0" Size="0" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="MATERIAL_NAME" DataSetColumn="MATERIAL_NAME" />
+              <Mapping SourceColumn="SHIPPED_QUANTITY" DataSetColumn="SHIPPED_QUANTITY" />
+              <Mapping SourceColumn="TOTAL" DataSetColumn="TOTAL" />
+              <Mapping SourceColumn="QUANTITY_IN_PCS" DataSetColumn="QUANTITY_IN_PCS" />
+              <Mapping SourceColumn="REGION" DataSetColumn="REGION" />
+              <Mapping SourceColumn="AVG_QUANTITY_IN_PCS" DataSetColumn="AVG_QUANTITY_IN_PCS" />
+              <Mapping SourceColumn="AVG_PER_CASE" DataSetColumn="AVG_PER_CASE" />
+              <Mapping SourceColumn="VALUE_AVG" DataSetColumn="VALUE_AVG" />
+              <Mapping SourceColumn="SUPPER_STOCKIST" DataSetColumn="SUPPER_STOCKIST" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable3TableAdapter" GeneratorDataComponentClassName="DataTable3TableAdapter" Name="DataTable3" UserDataComponentName="DataTable3TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ViccoConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT S.NAME AS SUPPER_STOCKIST,PO.DATE,PO.PO_NO AS INVOICE_NO,D.NAME+' ('+D.CODE+')' AS DISTRIBUTOR,D.DISTRIBUTOR_TYPE,D.DISTRICT,
+		M.MATERIAL_NAME+' ('+M.MATERIAL_CODE+')' AS MATERIAL_NAME,0 AS QTY,CAST (POP.QTY AS INT) AS SUB_TOTAL,PO.GST_NO AS SALES_OFFICER,ISNULL(AMOUNT,0)+(ISNULL(AMOUNT,0)*0.05) AS TOTAL_VALUE
+		FROM PURCHASE_ORDER PO JOIN PURCHASE_ORDER_PRODUCT POP 
+		ON PO.PURCHASEORDER_ID=POP.PURCHASEORDER_ID JOIN SUPPER_STOCKIST S ON S.STOCKIST_ID=PO.STOCKIST_ID
+		JOIN DISTRIBUTOR D ON D.DISTRIBUTOR_ID=PO.CUSTOMER_ID JOIN MATERIAL M ON M.MATERIAL_ID=POP.PRODUCT_ID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="SUPPER_STOCKIST" DataSetColumn="SUPPER_STOCKIST" />
+              <Mapping SourceColumn="DATE" DataSetColumn="DATE" />
+              <Mapping SourceColumn="INVOICE_NO" DataSetColumn="INVOICE_NO" />
+              <Mapping SourceColumn="DISTRIBUTOR" DataSetColumn="DISTRIBUTOR" />
+              <Mapping SourceColumn="DISTRICT" DataSetColumn="DISTRICT" />
+              <Mapping SourceColumn="MATERIAL_NAME" DataSetColumn="MATERIAL_NAME" />
+              <Mapping SourceColumn="SALES_OFFICER" DataSetColumn="SALES_OFFICER" />
+              <Mapping SourceColumn="DISTRIBUTOR_TYPE" DataSetColumn="DISTRIBUTOR_TYPE" />
+              <Mapping SourceColumn="SUB_TOTAL" DataSetColumn="SUB_TOTAL" />
+              <Mapping SourceColumn="TOTAL_VALUE" DataSetColumn="TOTAL_VALUE" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable4TableAdapter" GeneratorDataComponentClassName="DataTable4TableAdapter" Name="DataTable4" UserDataComponentName="DataTable4TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ViccoConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT S.NAME AS SUPPER_STOCKIST,D.NAME+' ('+D.CODE+')' AS DISTRIBUTOR,D.DISTRIBUTOR_TYPE,D.DISTRICT,DATENAME(month,PO.DATE)+' '+DATENAME(YEAR,PO.DATE) AS MONTH_YEAR,
+		M.MATERIAL_NAME+' ('+M.MATERIAL_CODE+')' AS MATERIAL_NAME,CAST(POP.QTY AS INT) AS TOTAL,PO.PO_NO AS INVOICE_NO,ISNULL(AMOUNT,0)+(ISNULL(AMOUNT,0)*0.05) AS TOTAL_VALUE
+		FROM PURCHASE_ORDER PO JOIN PURCHASE_ORDER_PRODUCT POP ON POP.PURCHASEORDER_ID=PO.PURCHASEORDER_ID 
+		JOIN SUPPER_STOCKIST S ON S.STOCKIST_ID=PO.STOCKIST_ID JOIN DISTRIBUTOR D ON D.DISTRIBUTOR_ID=PO.CUSTOMER_ID
+		JOIN MATERIAL M ON M.MATERIAL_ID=POP.PRODUCT_ID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="SUPPER_STOCKIST" DataSetColumn="SUPPER_STOCKIST" />
+              <Mapping SourceColumn="DISTRIBUTOR" DataSetColumn="DISTRIBUTOR" />
+              <Mapping SourceColumn="MONTH_YEAR" DataSetColumn="MONTH_YEAR" />
+              <Mapping SourceColumn="MATERIAL_NAME" DataSetColumn="MATERIAL_NAME" />
+              <Mapping SourceColumn="TOTAL" DataSetColumn="TOTAL" />
+              <Mapping SourceColumn="INVOICE_NO" DataSetColumn="INVOICE_NO" />
+              <Mapping SourceColumn="TOTAL_VALUE" DataSetColumn="TOTAL_VALUE" />
+              <Mapping SourceColumn="DISTRIBUTOR_TYPE" DataSetColumn="DISTRIBUTOR_TYPE" />
+              <Mapping SourceColumn="DISTRICT" DataSetColumn="DISTRICT" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SUPPER_STOCKISTTableAdapter" GeneratorDataComponentClassName="SUPPER_STOCKISTTableAdapter" Name="SUPPER_STOCKIST" UserDataComponentName="SUPPER_STOCKISTTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ViccoConnectionString (Web.config)" DbObjectName="VICCO_DB.dbo.SUPPER_STOCKIST" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [SUPPER_STOCKIST] ([name]) VALUES (@SUPPER_STOCKIST)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@SUPPER_STOCKIST" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="SUPPER_STOCKIST" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT S.NAME AS SUPPER_STOCKIST,D.NAME+' ('+D.CODE+')' AS DISTRIBUTOR,0 AS TOTAL_VALUE FROM SUPPER_STOCKIST S JOIN DISTRIBUTOR D ON D.STOCKIST_ID=S.STOCKIST_ID
+		WHERE DISTRIBUTOR_ID NOT IN (SELECT CUSTOMER_ID FROM PURCHASE_ORDER WHERE DATE BETWEEN ISNULL(@FROM_DATE,DATE) AND ISNULL(@TO_DATE,DATE))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="FROM_DATE" ColumnName="" DataSourceName="" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@FROM_DATE" Precision="0" Scale="0" Size="3" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="TO_DATE" ColumnName="" DataSourceName="" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@TO_DATE" Precision="0" Scale="0" Size="3" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="SUPPER_STOCKIST" DataSetColumn="SUPPER_STOCKIST" />
+              <Mapping SourceColumn="DISTRIBUTOR" DataSetColumn="DISTRIBUTOR" />
+              <Mapping SourceColumn="TOTAL_VALUE" DataSetColumn="TOTAL_VALUE" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable5TableAdapter" GeneratorDataComponentClassName="DataTable5TableAdapter" Name="DataTable5" UserDataComponentName="DataTable5TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ViccoConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT S.REGION,S.CITY,--T.NATIONAL_HEAD,T.STATE_HEAD,T.ASM,
+		(SELECT STUFF((SELECT ', ' + E.EMP_NAME  FROM EMPOLYEE_MASTER E WHERE DEACTIVE_DATE&gt;=T.FROM_DATE OR DEACTIVE_DATE IS NULL AND DESIGNATION_ID=1 AND EMP_ID IN(SELECT EMPLOYEE_ID FROM ROLES_ASSIGN_DISTRIBUTOR WHERE DISTRIBUTOR_ID=T.DISTRIBUTOR_ID)FOR XML PATH('')), 1, 1, '')) AS NATIONAL_HEAD,
+		(SELECT STUFF((SELECT ', ' + E.EMP_NAME  FROM EMPOLYEE_MASTER E WHERE DEACTIVE_DATE&gt;=T.FROM_DATE OR DEACTIVE_DATE IS NULL AND DESIGNATION_ID=2 AND EMP_ID IN(SELECT EMPLOYEE_ID FROM ROLES_ASSIGN_DISTRIBUTOR WHERE DISTRIBUTOR_ID=T.DISTRIBUTOR_ID)FOR XML PATH('')), 1, 1, '')) AS STATE_HEAD,
+		(SELECT STUFF((SELECT ', ' + E.EMP_NAME  FROM EMPOLYEE_MASTER E WHERE DEACTIVE_DATE&gt;=T.FROM_DATE OR DEACTIVE_DATE IS NULL AND DESIGNATION_ID=3 AND EMP_ID IN(SELECT EMPLOYEE_ID FROM ROLES_ASSIGN_DISTRIBUTOR WHERE DISTRIBUTOR_ID=T.DISTRIBUTOR_ID)FOR XML PATH('')), 1, 1, '')) AS ASM,
+		(SELECT STUFF((SELECT ', ' + E.EMP_NAME  FROM EMPOLYEE_MASTER E WHERE DEACTIVE_DATE&gt;=T.FROM_DATE OR DEACTIVE_DATE IS NULL AND DESIGNATION_ID=4 AND EMP_ID IN(SELECT EMPLOYEE_ID FROM ROLES_ASSIGN_DISTRIBUTOR WHERE DISTRIBUTOR_ID=T.DISTRIBUTOR_ID)FOR XML PATH('')), 1, 1, '')) AS SO,
+		(SELECT STUFF((SELECT ', ' + E.EMP_NAME  FROM EMPOLYEE_MASTER E WHERE DEACTIVE_DATE&gt;=T.FROM_DATE OR DEACTIVE_DATE IS NULL AND DESIGNATION_ID=5 AND EMP_ID IN(SELECT EMPLOYEE_ID FROM ROLES_ASSIGN_DISTRIBUTOR WHERE DISTRIBUTOR_ID=T.DISTRIBUTOR_ID)FOR XML PATH('')), 1, 1, '')) AS SR,
+		--T.SO,T.SR,
+		S.NAME+' ('+S.CODE+')' AS STOCKIST_NAME,M.SHORT_NAME AS MATERIAL_NAME,M.MATERIAL_GROUP,D.NAME+' ('+D.CODE+')' AS DISTRIBUTOR_NAME,D.DISTRIBUTOR_TYPE,T.FROM_DATE,T.TO_DATE,T.TARGET,
+		ISNULL((SELECT SUM(ISNULL(QTY,0)) FROM PURCHASE_ORDER_PRODUCT WHERE PURCHASEORDER_ID IN(SELECT PURCHASEORDER_ID FROM PURCHASE_ORDER WHERE CUSTOMER_ID=T.DISTRIBUTOR_ID
+			AND STOCKIST_ID=S.STOCKIST_ID AND DATE BETWEEN T.FROM_DATE AND T.TO_DATE) AND PRODUCT_ID=T.MATERIAL_ID),0) AS COMPLETE_TARGET
+		FROM TARGET T JOIN DISTRIBUTOR D ON D.DISTRIBUTOR_ID=T.DISTRIBUTOR_ID JOIN SUPPER_STOCKIST S ON S.STOCKIST_ID=D.STOCKIST_ID
+		JOIN MATERIAL M ON T.MATERIAL_ID=M.MATERIAL_ID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="STOCKIST_NAME" DataSetColumn="STOCKIST_NAME" />
+              <Mapping SourceColumn="MATERIAL_NAME" DataSetColumn="MATERIAL_NAME" />
+              <Mapping SourceColumn="DISTRIBUTOR_NAME" DataSetColumn="DISTRIBUTOR_NAME" />
+              <Mapping SourceColumn="MONTH" DataSetColumn="MONTH" />
+              <Mapping SourceColumn="YEAR" DataSetColumn="YEAR" />
+              <Mapping SourceColumn="TARGET" DataSetColumn="TARGET" />
+              <Mapping SourceColumn="COMPLETE_TARGET" DataSetColumn="COMPLETE_TARGET" />
+              <Mapping SourceColumn="NATIONAL_HEAD" DataSetColumn="NATIONAL_HEAD" />
+              <Mapping SourceColumn="STATE_HEAD" DataSetColumn="STATE_HEAD" />
+              <Mapping SourceColumn="ASM" DataSetColumn="ASM" />
+              <Mapping SourceColumn="SO" DataSetColumn="SO" />
+              <Mapping SourceColumn="SR" DataSetColumn="SR" />
+              <Mapping SourceColumn="REGION" DataSetColumn="REGION" />
+              <Mapping SourceColumn="CITY" DataSetColumn="CITY" />
+              <Mapping SourceColumn="MATERIAL_GROUP" DataSetColumn="MATERIAL_GROUP" />
+              <Mapping SourceColumn="DISTRIBUTOR_TYPE" DataSetColumn="DISTRIBUTOR_TYPE" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable6TableAdapter" GeneratorDataComponentClassName="DataTable6TableAdapter" Name="DataTable6" UserDataComponentName="DataTable6TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ViccoConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT M.MATERIAL_NAME,M.MATERIAL_GROUP,D.NAME AS NAME,T.FROM_DATE,T.TO_DATE,T.TARGET,
+			(SELECT SUM(ISNULL(QTY,0)) FROM PURCHASE_ORDER_PRODUCT WHERE PURCHASEORDER_ID IN(SELECT PURCHASEORDER_ID FROM PURCHASE_ORDER WHERE CUSTOMER_ID=T.DISTRIBUTOR_ID
+			AND STOCKIST_ID=S.STOCKIST_ID AND DATE BETWEEN T.FROM_DATE AND T.TO_DATE) AND PRODUCT_ID=T.MATERIAL_ID) AS COMPLETE_TARGET
+			FROM TARGET T JOIN DISTRIBUTOR D ON D.DISTRIBUTOR_ID=T.DISTRIBUTOR_ID JOIN SUPPER_STOCKIST S ON S.STOCKIST_ID=D.STOCKIST_ID
+			JOIN MATERIAL M ON T.MATERIAL_ID=M.MATERIAL_ID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="MATERIAL_NAME" DataSetColumn="MATERIAL_NAME" />
+              <Mapping SourceColumn="NAME" DataSetColumn="NAME" />
+              <Mapping SourceColumn="MONTH" DataSetColumn="MONTH" />
+              <Mapping SourceColumn="YEAR" DataSetColumn="YEAR" />
+              <Mapping SourceColumn="TARGET" DataSetColumn="TARGET" />
+              <Mapping SourceColumn="COMPLETE_TARGET" DataSetColumn="COMPLETE_TARGET" />
+              <Mapping SourceColumn="MATERIAL_GROUP" DataSetColumn="MATERIAL_GROUP" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable7TableAdapter" GeneratorDataComponentClassName="DataTable7TableAdapter" Name="DataTable7" UserDataComponentName="DataTable7TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ViccoConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT D.REGION,SS.NAME AS SUPPER_STOCKIST,D.NAME+' ('+D.CODE+')' AS DISTRIBUTOR,M.SHORT_NAME AS MATERIAL_NAME,
+		(SELECT TOP 1 SALE FROM DISTRIBUTOR_SALE WHERE TO_DATE&lt;=@FROM_DATE) AS OPENING_STOCK,
+		SUM(QTY) AS PURCHASE,
+		(SELECT TOP 1 SALE FROM DISTRIBUTOR_SALE WHERE FROM_DATE&gt;=@TO_DATE) AS CLOSING_STOCK,
+		(ISNULL((SELECT TOP 1 SALE FROM DISTRIBUTOR_SALE WHERE TO_DATE&lt;=@FROM_DATE),0)+SUM(QTY))-
+		ISNULL((SELECT TOP 1 SALE FROM DISTRIBUTOR_SALE WHERE FROM_DATE&gt;=@TO_DATE),0) AS SALE
+		FROM PURCHASE_ORDER PO 
+		JOIN PURCHASE_ORDER_PRODUCT POP ON POP.PURCHASEORDER_ID=PO.PURCHASEORDER_ID
+		JOIN SUPPER_STOCKIST SS ON SS.STOCKIST_ID=PO.STOCKIST_ID JOIN DISTRIBUTOR D ON D.DISTRIBUTOR_ID=PO.CUSTOMER_ID
+		JOIN MATERIAL M ON M.MATERIAL_ID=POP.PRODUCT_ID
+		WHERE PO.STOCKIST_ID=ISNULL(@STOCKIST_ID,PO.STOCKIST_ID)
+		AND PO.STOCKIST_ID IN (SELECT STOCKIST_ID FROM SUPPER_STOCKIST WHERE REGION=ISNULL(@REGION,REGION)) AND POP.PRODUCT_ID IN 
+		(SELECT * FROM dbo.SplitList(ISNULL(@MATERIAL_IDS,POP.PRODUCT_ID), ',')) AND PO.DATE BETWEEN ISNULL(@FROM_DATE,DATE) AND ISNULL(@TO_DATE,DATE)
+		GROUP BY D.REGION,SS.NAME,D.NAME,D.CODE,M.SHORT_NAME</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="STOCKIST_ID" ColumnName="STOCKIST_ID" DataSourceName="VICCO_DB.dbo.PURCHASE_ORDER" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@STOCKIST_ID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="STOCKIST_ID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="FROM_DATE" ColumnName="DATE" DataSourceName="VICCO_DB.dbo.PURCHASE_ORDER" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@FROM_DATE" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="DATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="TO_DATE" ColumnName="DATE" DataSourceName="VICCO_DB.dbo.PURCHASE_ORDER" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@TO_DATE" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="DATE" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="REGION" ColumnName="" DataSourceName="" DataTypeServer="varchar(45)" DbType="AnsiString" Direction="Input" ParameterName="@REGION" Precision="0" Scale="0" Size="45" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="MATERIAL_IDS" ColumnName="" DataSourceName="" DataTypeServer="unknown" DbType="AnsiString" Direction="Input" ParameterName="@MATERIAL_IDS" Precision="0" Scale="0" Size="1024" SourceColumn="" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="REGION" DataSetColumn="REGION" />
+              <Mapping SourceColumn="SUPPER_STOCKIST" DataSetColumn="SUPPER_STOCKIST" />
+              <Mapping SourceColumn="DISTRIBUTOR" DataSetColumn="DISTRIBUTOR" />
+              <Mapping SourceColumn="MATERIAL_NAME" DataSetColumn="MATERIAL_NAME" />
+              <Mapping SourceColumn="OPENING_STOCK" DataSetColumn="OPENING_STOCK" />
+              <Mapping SourceColumn="PURCHASE" DataSetColumn="PURCHASE" />
+              <Mapping SourceColumn="CLOSING_STOCK" DataSetColumn="CLOSING_STOCK" />
+              <Mapping SourceColumn="SALE" DataSetColumn="SALE" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ReportData" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ReportData" msprop:Generator_UserDSName="ReportData">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="PURCHASE_ORDER" msprop:Generator_TableClassName="PURCHASE_ORDERDataTable" msprop:Generator_TableVarName="tablePURCHASE_ORDER" msprop:Generator_TablePropName="PURCHASE_ORDER" msprop:Generator_RowDeletingName="PURCHASE_ORDERRowDeleting" msprop:Generator_RowChangingName="PURCHASE_ORDERRowChanging" msprop:Generator_RowEvHandlerName="PURCHASE_ORDERRowChangeEventHandler" msprop:Generator_RowDeletedName="PURCHASE_ORDERRowDeleted" msprop:Generator_UserTableName="PURCHASE_ORDER" msprop:Generator_RowChangedName="PURCHASE_ORDERRowChanged" msprop:Generator_RowEvArgName="PURCHASE_ORDERRowChangeEvent" msprop:Generator_RowClassName="PURCHASE_ORDERRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SUPPER_STOCKIST" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSUPPER_STOCKIST" msprop:Generator_ColumnPropNameInRow="SUPPER_STOCKIST" msprop:Generator_ColumnPropNameInTable="SUPPER_STOCKISTColumn" msprop:Generator_UserColumnName="SUPPER_STOCKIST" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="93" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DISTRIBUTOR" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDISTRIBUTOR" msprop:Generator_ColumnPropNameInRow="DISTRIBUTOR" msprop:Generator_ColumnPropNameInTable="DISTRIBUTORColumn" msprop:Generator_UserColumnName="DISTRIBUTOR" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="93" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MONTH_YEAR" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMONTH_YEAR" msprop:Generator_ColumnPropNameInRow="MONTH_YEAR" msprop:Generator_ColumnPropNameInTable="MONTH_YEARColumn" msprop:Generator_UserColumnName="MONTH_YEAR" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="61" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MATERIAL_NAME" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMATERIAL_NAME" msprop:Generator_ColumnPropNameInRow="MATERIAL_NAME" msprop:Generator_ColumnPropNameInTable="MATERIAL_NAMEColumn" msprop:Generator_UserColumnName="MATERIAL_NAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="153" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="INVOICE_NO" msprop:Generator_ColumnVarNameInTable="columnINVOICE_NO" msprop:Generator_ColumnPropNameInRow="INVOICE_NO" msprop:Generator_ColumnPropNameInTable="INVOICE_NOColumn" msprop:Generator_UserColumnName="INVOICE_NO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DISTRIBUTOR_TYPE" msprop:Generator_ColumnVarNameInTable="columnDISTRIBUTOR_TYPE" msprop:Generator_ColumnPropNameInRow="DISTRIBUTOR_TYPE" msprop:Generator_ColumnPropNameInTable="DISTRIBUTOR_TYPEColumn" msprop:Generator_UserColumnName="DISTRIBUTOR_TYPE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TOTAL" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOTAL" msprop:Generator_ColumnPropNameInRow="TOTAL" msprop:Generator_ColumnPropNameInTable="TOTALColumn" msprop:Generator_UserColumnName="TOTAL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DISTRICT" msprop:Generator_ColumnVarNameInTable="columnDISTRICT" msprop:Generator_ColumnPropNameInRow="DISTRICT" msprop:Generator_ColumnPropNameInTable="DISTRICTColumn" msprop:Generator_UserColumnName="DISTRICT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DATE" msprop:Generator_ColumnVarNameInTable="columnDATE" msprop:Generator_ColumnPropNameInRow="DATE" msprop:Generator_ColumnPropNameInTable="DATEColumn" msprop:Generator_UserColumnName="DATE" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SUPPER_STOCKIST" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSUPPER_STOCKIST" msprop:Generator_ColumnPropNameInRow="SUPPER_STOCKIST" msprop:Generator_ColumnPropNameInTable="SUPPER_STOCKISTColumn" msprop:Generator_UserColumnName="SUPPER_STOCKIST" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="93" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DATE" msprop:Generator_ColumnVarNameInTable="columnDATE" msprop:Generator_ColumnPropNameInRow="DATE" msprop:Generator_ColumnPropNameInTable="DATEColumn" msprop:Generator_UserColumnName="DATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="INVOICE_NO" msprop:Generator_ColumnVarNameInTable="columnINVOICE_NO" msprop:Generator_ColumnPropNameInRow="INVOICE_NO" msprop:Generator_ColumnPropNameInTable="INVOICE_NOColumn" msprop:Generator_UserColumnName="INVOICE_NO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DISTRIBUTOR" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDISTRIBUTOR" msprop:Generator_ColumnPropNameInRow="DISTRIBUTOR" msprop:Generator_ColumnPropNameInTable="DISTRIBUTORColumn" msprop:Generator_UserColumnName="DISTRIBUTOR" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="93" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DISTRICT" msprop:Generator_ColumnVarNameInTable="columnDISTRICT" msprop:Generator_ColumnPropNameInRow="DISTRICT" msprop:Generator_ColumnPropNameInTable="DISTRICTColumn" msprop:Generator_UserColumnName="DISTRICT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MATERIAL_NAME" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMATERIAL_NAME" msprop:Generator_ColumnPropNameInRow="MATERIAL_NAME" msprop:Generator_ColumnPropNameInTable="MATERIAL_NAMEColumn" msprop:Generator_UserColumnName="MATERIAL_NAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="153" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TOTAL" msdata:Caption="QTY" msprop:Generator_ColumnVarNameInTable="columnTOTAL" msprop:Generator_ColumnPropNameInRow="TOTAL" msprop:Generator_ColumnPropNameInTable="TOTALColumn" msprop:Generator_UserColumnName="TOTAL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SALES_OFFICER" msprop:Generator_ColumnVarNameInTable="columnSALES_OFFICER" msprop:Generator_ColumnPropNameInRow="SALES_OFFICER" msprop:Generator_ColumnPropNameInTable="SALES_OFFICERColumn" msprop:Generator_UserColumnName="SALES_OFFICER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable2" msprop:Generator_TableClassName="DataTable2DataTable" msprop:Generator_TableVarName="tableDataTable2" msprop:Generator_TablePropName="DataTable2" msprop:Generator_RowDeletingName="DataTable2RowDeleting" msprop:Generator_RowChangingName="DataTable2RowChanging" msprop:Generator_RowEvHandlerName="DataTable2RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable2RowDeleted" msprop:Generator_UserTableName="DataTable2" msprop:Generator_RowChangedName="DataTable2RowChanged" msprop:Generator_RowEvArgName="DataTable2RowChangeEvent" msprop:Generator_RowClassName="DataTable2Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MATERIAL_NAME" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMATERIAL_NAME" msprop:Generator_ColumnPropNameInRow="MATERIAL_NAME" msprop:Generator_ColumnPropNameInTable="MATERIAL_NAMEColumn" msprop:Generator_UserColumnName="MATERIAL_NAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="153" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SHIPPED_QUANTITY" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSHIPPED_QUANTITY" msprop:Generator_ColumnPropNameInRow="SHIPPED_QUANTITY" msprop:Generator_ColumnPropNameInTable="SHIPPED_QUANTITYColumn" msprop:Generator_UserColumnName="SHIPPED_QUANTITY" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TOTAL" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOTAL" msprop:Generator_ColumnPropNameInRow="TOTAL" msprop:Generator_ColumnPropNameInTable="TOTALColumn" msprop:Generator_UserColumnName="TOTAL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="QUANTITY_IN_PCS" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnQUANTITY_IN_PCS" msprop:Generator_ColumnPropNameInRow="QUANTITY_IN_PCS" msprop:Generator_ColumnPropNameInTable="QUANTITY_IN_PCSColumn" msprop:Generator_UserColumnName="QUANTITY_IN_PCS" type="xs:decimal" minOccurs="0" />
+              <xs:element name="REGION" msprop:Generator_ColumnVarNameInTable="columnREGION" msprop:Generator_ColumnPropNameInRow="REGION" msprop:Generator_ColumnPropNameInTable="REGIONColumn" msprop:Generator_UserColumnName="REGION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AVG_QUANTITY_IN_PCS" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnAVG_QUANTITY_IN_PCS" msprop:Generator_ColumnPropNameInRow="AVG_QUANTITY_IN_PCS" msprop:Generator_ColumnPropNameInTable="AVG_QUANTITY_IN_PCSColumn" msprop:Generator_UserColumnName="AVG_QUANTITY_IN_PCS" type="xs:decimal" minOccurs="0" />
+              <xs:element name="AVG_PER_CASE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnAVG_PER_CASE" msprop:Generator_ColumnPropNameInRow="AVG_PER_CASE" msprop:Generator_ColumnPropNameInTable="AVG_PER_CASEColumn" msprop:Generator_UserColumnName="AVG_PER_CASE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="VALUE_AVG" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnVALUE_AVG" msprop:Generator_ColumnPropNameInRow="VALUE_AVG" msprop:Generator_ColumnPropNameInTable="VALUE_AVGColumn" msprop:Generator_UserColumnName="VALUE_AVG" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SUPPER_STOCKIST" msprop:Generator_ColumnVarNameInTable="columnSUPPER_STOCKIST" msprop:Generator_ColumnPropNameInRow="SUPPER_STOCKIST" msprop:Generator_ColumnPropNameInTable="SUPPER_STOCKISTColumn" msprop:Generator_UserColumnName="SUPPER_STOCKIST" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable3" msprop:Generator_TableClassName="DataTable3DataTable" msprop:Generator_TableVarName="tableDataTable3" msprop:Generator_TablePropName="DataTable3" msprop:Generator_RowDeletingName="DataTable3RowDeleting" msprop:Generator_RowChangingName="DataTable3RowChanging" msprop:Generator_RowEvHandlerName="DataTable3RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable3RowDeleted" msprop:Generator_UserTableName="DataTable3" msprop:Generator_RowChangedName="DataTable3RowChanged" msprop:Generator_RowEvArgName="DataTable3RowChangeEvent" msprop:Generator_RowClassName="DataTable3Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SUPPER_STOCKIST" msprop:Generator_ColumnVarNameInTable="columnSUPPER_STOCKIST" msprop:Generator_ColumnPropNameInRow="SUPPER_STOCKIST" msprop:Generator_ColumnPropNameInTable="SUPPER_STOCKISTColumn" msprop:Generator_UserColumnName="SUPPER_STOCKIST" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DATE" msprop:Generator_ColumnVarNameInTable="columnDATE" msprop:Generator_ColumnPropNameInRow="DATE" msprop:Generator_ColumnPropNameInTable="DATEColumn" msprop:Generator_UserColumnName="DATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="INVOICE_NO" msprop:Generator_ColumnVarNameInTable="columnINVOICE_NO" msprop:Generator_ColumnPropNameInRow="INVOICE_NO" msprop:Generator_ColumnPropNameInTable="INVOICE_NOColumn" msprop:Generator_UserColumnName="INVOICE_NO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DISTRIBUTOR" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDISTRIBUTOR" msprop:Generator_ColumnPropNameInRow="DISTRIBUTOR" msprop:Generator_ColumnPropNameInTable="DISTRIBUTORColumn" msprop:Generator_UserColumnName="DISTRIBUTOR" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="93" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DISTRICT" msprop:Generator_ColumnVarNameInTable="columnDISTRICT" msprop:Generator_ColumnPropNameInRow="DISTRICT" msprop:Generator_ColumnPropNameInTable="DISTRICTColumn" msprop:Generator_UserColumnName="DISTRICT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MATERIAL_NAME" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMATERIAL_NAME" msprop:Generator_ColumnPropNameInRow="MATERIAL_NAME" msprop:Generator_ColumnPropNameInTable="MATERIAL_NAMEColumn" msprop:Generator_UserColumnName="MATERIAL_NAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="153" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SALES_OFFICER" msprop:Generator_ColumnVarNameInTable="columnSALES_OFFICER" msprop:Generator_ColumnPropNameInRow="SALES_OFFICER" msprop:Generator_ColumnPropNameInTable="SALES_OFFICERColumn" msprop:Generator_UserColumnName="SALES_OFFICER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="QTY" msprop:Generator_ColumnVarNameInTable="columnQTY" msprop:Generator_ColumnPropNameInRow="QTY" msprop:Generator_ColumnPropNameInTable="QTYColumn" msprop:Generator_UserColumnName="QTY" type="xs:string" minOccurs="0" />
+              <xs:element name="DISTRIBUTOR_TYPE" msprop:Generator_ColumnVarNameInTable="columnDISTRIBUTOR_TYPE" msprop:Generator_ColumnPropNameInRow="DISTRIBUTOR_TYPE" msprop:Generator_ColumnPropNameInTable="DISTRIBUTOR_TYPEColumn" msprop:Generator_UserColumnName="DISTRIBUTOR_TYPE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SUB_TOTAL" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSUB_TOTAL" msprop:Generator_ColumnPropNameInRow="SUB_TOTAL" msprop:Generator_ColumnPropNameInTable="SUB_TOTALColumn" msprop:Generator_UserColumnName="SUB_TOTAL" type="xs:int" minOccurs="0" />
+              <xs:element name="TOTAL_VALUE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOTAL_VALUE" msprop:Generator_ColumnPropNameInRow="TOTAL_VALUE" msprop:Generator_ColumnPropNameInTable="TOTAL_VALUEColumn" msprop:Generator_UserColumnName="TOTAL_VALUE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="MATERIAL_GROUP" msprop:Generator_ColumnVarNameInTable="columnMATERIAL_GROUP" msprop:Generator_ColumnPropNameInRow="MATERIAL_GROUP" msprop:Generator_ColumnPropNameInTable="MATERIAL_GROUPColumn" msprop:Generator_UserColumnName="MATERIAL_GROUP" type="xs:string" minOccurs="0" />
+              <xs:element name="CITY" msprop:Generator_ColumnVarNameInTable="columnCITY" msprop:Generator_ColumnPropNameInRow="CITY" msprop:Generator_ColumnPropNameInTable="CITYColumn" msprop:Generator_UserColumnName="CITY" type="xs:string" minOccurs="0" />
+              <xs:element name="QTY_CASES" msprop:Generator_ColumnVarNameInTable="columnQTY_CASES" msprop:Generator_ColumnPropNameInRow="QTY_CASES" msprop:Generator_ColumnPropNameInTable="QTY_CASESColumn" msprop:Generator_UserColumnName="QTY_CASES" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable4" msprop:Generator_TableClassName="DataTable4DataTable" msprop:Generator_TableVarName="tableDataTable4" msprop:Generator_TablePropName="DataTable4" msprop:Generator_RowDeletingName="DataTable4RowDeleting" msprop:Generator_RowChangingName="DataTable4RowChanging" msprop:Generator_RowEvHandlerName="DataTable4RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable4RowDeleted" msprop:Generator_UserTableName="DataTable4" msprop:Generator_RowChangedName="DataTable4RowChanged" msprop:Generator_RowEvArgName="DataTable4RowChangeEvent" msprop:Generator_RowClassName="DataTable4Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SUPPER_STOCKIST" msprop:Generator_ColumnVarNameInTable="columnSUPPER_STOCKIST" msprop:Generator_ColumnPropNameInRow="SUPPER_STOCKIST" msprop:Generator_ColumnPropNameInTable="SUPPER_STOCKISTColumn" msprop:Generator_UserColumnName="SUPPER_STOCKIST" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DISTRIBUTOR" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDISTRIBUTOR" msprop:Generator_ColumnPropNameInRow="DISTRIBUTOR" msprop:Generator_ColumnPropNameInTable="DISTRIBUTORColumn" msprop:Generator_UserColumnName="DISTRIBUTOR" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="93" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MONTH_YEAR" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMONTH_YEAR" msprop:Generator_ColumnPropNameInRow="MONTH_YEAR" msprop:Generator_ColumnPropNameInTable="MONTH_YEARColumn" msprop:Generator_UserColumnName="MONTH_YEAR" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="61" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MATERIAL_NAME" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMATERIAL_NAME" msprop:Generator_ColumnPropNameInRow="MATERIAL_NAME" msprop:Generator_ColumnPropNameInTable="MATERIAL_NAMEColumn" msprop:Generator_UserColumnName="MATERIAL_NAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="153" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TOTAL" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOTAL" msprop:Generator_ColumnPropNameInRow="TOTAL" msprop:Generator_ColumnPropNameInTable="TOTALColumn" msprop:Generator_UserColumnName="TOTAL" type="xs:int" minOccurs="0" />
+              <xs:element name="INVOICE_NO" msprop:Generator_ColumnVarNameInTable="columnINVOICE_NO" msprop:Generator_ColumnPropNameInRow="INVOICE_NO" msprop:Generator_ColumnPropNameInTable="INVOICE_NOColumn" msprop:Generator_UserColumnName="INVOICE_NO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TOTAL_VALUE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOTAL_VALUE" msprop:Generator_ColumnPropNameInRow="TOTAL_VALUE" msprop:Generator_ColumnPropNameInTable="TOTAL_VALUEColumn" msprop:Generator_UserColumnName="TOTAL_VALUE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DISTRIBUTOR_TYPE" msprop:Generator_ColumnVarNameInTable="columnDISTRIBUTOR_TYPE" msprop:Generator_ColumnPropNameInRow="DISTRIBUTOR_TYPE" msprop:Generator_ColumnPropNameInTable="DISTRIBUTOR_TYPEColumn" msprop:Generator_UserColumnName="DISTRIBUTOR_TYPE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DISTRICT" msprop:Generator_ColumnVarNameInTable="columnDISTRICT" msprop:Generator_ColumnPropNameInRow="DISTRICT" msprop:Generator_ColumnPropNameInTable="DISTRICTColumn" msprop:Generator_UserColumnName="DISTRICT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DATE" msprop:Generator_ColumnVarNameInTable="columnDATE" msprop:Generator_ColumnPropNameInRow="DATE" msprop:Generator_ColumnPropNameInTable="DATEColumn" msprop:Generator_UserColumnName="DATE" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SUPPER_STOCKIST" msprop:Generator_TableClassName="SUPPER_STOCKISTDataTable" msprop:Generator_TableVarName="tableSUPPER_STOCKIST" msprop:Generator_TablePropName="SUPPER_STOCKIST" msprop:Generator_RowDeletingName="SUPPER_STOCKISTRowDeleting" msprop:Generator_RowChangingName="SUPPER_STOCKISTRowChanging" msprop:Generator_RowEvHandlerName="SUPPER_STOCKISTRowChangeEventHandler" msprop:Generator_RowDeletedName="SUPPER_STOCKISTRowDeleted" msprop:Generator_UserTableName="SUPPER_STOCKIST" msprop:Generator_RowChangedName="SUPPER_STOCKISTRowChanged" msprop:Generator_RowEvArgName="SUPPER_STOCKISTRowChangeEvent" msprop:Generator_RowClassName="SUPPER_STOCKISTRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SUPPER_STOCKIST" msprop:Generator_ColumnVarNameInTable="columnSUPPER_STOCKIST" msprop:Generator_ColumnPropNameInRow="SUPPER_STOCKIST" msprop:Generator_ColumnPropNameInTable="SUPPER_STOCKISTColumn" msprop:Generator_UserColumnName="SUPPER_STOCKIST" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DISTRIBUTOR" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDISTRIBUTOR" msprop:Generator_ColumnPropNameInRow="DISTRIBUTOR" msprop:Generator_ColumnPropNameInTable="DISTRIBUTORColumn" msprop:Generator_UserColumnName="DISTRIBUTOR" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="93" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TOTAL_VALUE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTOTAL_VALUE" msprop:Generator_ColumnPropNameInRow="TOTAL_VALUE" msprop:Generator_ColumnPropNameInTable="TOTAL_VALUEColumn" msprop:Generator_UserColumnName="TOTAL_VALUE" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable5" msprop:Generator_TableClassName="DataTable5DataTable" msprop:Generator_TableVarName="tableDataTable5" msprop:Generator_TablePropName="DataTable5" msprop:Generator_RowDeletingName="DataTable5RowDeleting" msprop:Generator_RowChangingName="DataTable5RowChanging" msprop:Generator_RowEvHandlerName="DataTable5RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable5RowDeleted" msprop:Generator_UserTableName="DataTable5" msprop:Generator_RowChangedName="DataTable5RowChanged" msprop:Generator_RowEvArgName="DataTable5RowChangeEvent" msprop:Generator_RowClassName="DataTable5Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="STOCKIST_NAME" msprop:Generator_ColumnVarNameInTable="columnSTOCKIST_NAME" msprop:Generator_ColumnPropNameInRow="STOCKIST_NAME" msprop:Generator_ColumnPropNameInTable="STOCKIST_NAMEColumn" msprop:Generator_UserColumnName="STOCKIST_NAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MATERIAL_NAME" msprop:Generator_ColumnVarNameInTable="columnMATERIAL_NAME" msprop:Generator_ColumnPropNameInRow="MATERIAL_NAME" msprop:Generator_ColumnPropNameInTable="MATERIAL_NAMEColumn" msprop:Generator_UserColumnName="MATERIAL_NAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DISTRIBUTOR_NAME" msprop:Generator_ColumnVarNameInTable="columnDISTRIBUTOR_NAME" msprop:Generator_ColumnPropNameInRow="DISTRIBUTOR_NAME" msprop:Generator_ColumnPropNameInTable="DISTRIBUTOR_NAMEColumn" msprop:Generator_UserColumnName="DISTRIBUTOR_NAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MONTH" msprop:Generator_ColumnVarNameInTable="columnMONTH" msprop:Generator_ColumnPropNameInRow="MONTH" msprop:Generator_ColumnPropNameInTable="MONTHColumn" msprop:Generator_UserColumnName="MONTH" type="xs:string" minOccurs="0" />
+              <xs:element name="YEAR" msprop:Generator_ColumnVarNameInTable="columnYEAR" msprop:Generator_ColumnPropNameInRow="YEAR" msprop:Generator_ColumnPropNameInTable="YEARColumn" msprop:Generator_UserColumnName="YEAR" type="xs:string" minOccurs="0" />
+              <xs:element name="TARGET" msprop:Generator_ColumnVarNameInTable="columnTARGET" msprop:Generator_ColumnPropNameInRow="TARGET" msprop:Generator_ColumnPropNameInTable="TARGETColumn" msprop:Generator_UserColumnName="TARGET" type="xs:int" minOccurs="0" />
+              <xs:element name="COMPLETE_TARGET" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCOMPLETE_TARGET" msprop:Generator_ColumnPropNameInRow="COMPLETE_TARGET" msprop:Generator_ColumnPropNameInTable="COMPLETE_TARGETColumn" msprop:Generator_UserColumnName="COMPLETE_TARGET" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NATIONAL_HEAD" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNATIONAL_HEAD" msprop:Generator_ColumnPropNameInRow="NATIONAL_HEAD" msprop:Generator_ColumnPropNameInTable="NATIONAL_HEADColumn" msprop:Generator_UserColumnName="NATIONAL_HEAD" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="STATE_HEAD" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSTATE_HEAD" msprop:Generator_ColumnPropNameInRow="STATE_HEAD" msprop:Generator_ColumnPropNameInTable="STATE_HEADColumn" msprop:Generator_UserColumnName="STATE_HEAD" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ASM" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnASM" msprop:Generator_ColumnPropNameInRow="ASM" msprop:Generator_ColumnPropNameInTable="ASMColumn" msprop:Generator_UserColumnName="ASM" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SO" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSO" msprop:Generator_ColumnPropNameInRow="SO" msprop:Generator_ColumnPropNameInTable="SOColumn" msprop:Generator_UserColumnName="SO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SR" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSR" msprop:Generator_ColumnPropNameInRow="SR" msprop:Generator_ColumnPropNameInTable="SRColumn" msprop:Generator_UserColumnName="SR" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MATERIAL_GROUP" msprop:Generator_ColumnVarNameInTable="columnMATERIAL_GROUP" msprop:Generator_ColumnPropNameInRow="MATERIAL_GROUP" msprop:Generator_ColumnPropNameInTable="MATERIAL_GROUPColumn" msprop:Generator_UserColumnName="MATERIAL_GROUP" type="xs:string" minOccurs="0" />
+              <xs:element name="REGION" msprop:Generator_ColumnVarNameInTable="columnREGION" msprop:Generator_ColumnPropNameInRow="REGION" msprop:Generator_ColumnPropNameInTable="REGIONColumn" msprop:Generator_UserColumnName="REGION" type="xs:string" minOccurs="0" />
+              <xs:element name="CITY" msprop:Generator_ColumnVarNameInTable="columnCITY" msprop:Generator_ColumnPropNameInRow="CITY" msprop:Generator_ColumnPropNameInTable="CITYColumn" msprop:Generator_UserColumnName="CITY" type="xs:string" minOccurs="0" />
+              <xs:element name="DISTRIBUTOR_TYPE" msprop:Generator_ColumnVarNameInTable="columnDISTRIBUTOR_TYPE" msprop:Generator_ColumnPropNameInRow="DISTRIBUTOR_TYPE" msprop:Generator_ColumnPropNameInTable="DISTRIBUTOR_TYPEColumn" msprop:Generator_UserColumnName="DISTRIBUTOR_TYPE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable6" msprop:Generator_TableClassName="DataTable6DataTable" msprop:Generator_TableVarName="tableDataTable6" msprop:Generator_RowChangedName="DataTable6RowChanged" msprop:Generator_TablePropName="DataTable6" msprop:Generator_RowDeletingName="DataTable6RowDeleting" msprop:Generator_RowChangingName="DataTable6RowChanging" msprop:Generator_RowEvHandlerName="DataTable6RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable6RowDeleted" msprop:Generator_RowClassName="DataTable6Row" msprop:Generator_UserTableName="DataTable6" msprop:Generator_RowEvArgName="DataTable6RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MATERIAL_NAME" msprop:Generator_ColumnVarNameInTable="columnMATERIAL_NAME" msprop:Generator_ColumnPropNameInRow="MATERIAL_NAME" msprop:Generator_ColumnPropNameInTable="MATERIAL_NAMEColumn" msprop:Generator_UserColumnName="MATERIAL_NAME">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NAME" msprop:Generator_ColumnVarNameInTable="columnNAME" msprop:Generator_ColumnPropNameInRow="NAME" msprop:Generator_ColumnPropNameInTable="NAMEColumn" msprop:Generator_UserColumnName="NAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MONTH" msprop:Generator_ColumnVarNameInTable="columnMONTH" msprop:Generator_ColumnPropNameInRow="MONTH" msprop:Generator_ColumnPropNameInTable="MONTHColumn" msprop:Generator_UserColumnName="MONTH" type="xs:string" minOccurs="0" />
+              <xs:element name="YEAR" msprop:Generator_ColumnVarNameInTable="columnYEAR" msprop:Generator_ColumnPropNameInRow="YEAR" msprop:Generator_ColumnPropNameInTable="YEARColumn" msprop:Generator_UserColumnName="YEAR" type="xs:string" minOccurs="0" />
+              <xs:element name="TARGET" msprop:Generator_ColumnVarNameInTable="columnTARGET" msprop:Generator_ColumnPropNameInRow="TARGET" msprop:Generator_ColumnPropNameInTable="TARGETColumn" msprop:Generator_UserColumnName="TARGET" type="xs:int" minOccurs="0" />
+              <xs:element name="COMPLETE_TARGET" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCOMPLETE_TARGET" msprop:Generator_ColumnPropNameInRow="COMPLETE_TARGET" msprop:Generator_ColumnPropNameInTable="COMPLETE_TARGETColumn" msprop:Generator_UserColumnName="COMPLETE_TARGET" type="xs:decimal" minOccurs="0" />
+              <xs:element name="MATERIAL_GROUP" msprop:Generator_ColumnVarNameInTable="columnMATERIAL_GROUP" msprop:Generator_ColumnPropNameInRow="MATERIAL_GROUP" msprop:Generator_ColumnPropNameInTable="MATERIAL_GROUPColumn" msprop:Generator_UserColumnName="MATERIAL_GROUP" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="REGION" msprop:Generator_ColumnVarNameInTable="columnREGION" msprop:Generator_ColumnPropNameInRow="REGION" msprop:Generator_ColumnPropNameInTable="REGIONColumn" msprop:Generator_UserColumnName="REGION" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable7" msprop:Generator_TableClassName="DataTable7DataTable" msprop:Generator_TableVarName="tableDataTable7" msprop:Generator_TablePropName="DataTable7" msprop:Generator_RowDeletingName="DataTable7RowDeleting" msprop:Generator_RowChangingName="DataTable7RowChanging" msprop:Generator_RowEvHandlerName="DataTable7RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable7RowDeleted" msprop:Generator_UserTableName="DataTable7" msprop:Generator_RowChangedName="DataTable7RowChanged" msprop:Generator_RowEvArgName="DataTable7RowChangeEvent" msprop:Generator_RowClassName="DataTable7Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="REGION" msprop:Generator_ColumnVarNameInTable="columnREGION" msprop:Generator_ColumnPropNameInRow="REGION" msprop:Generator_ColumnPropNameInTable="REGIONColumn" msprop:Generator_UserColumnName="REGION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SUPPER_STOCKIST" msprop:Generator_ColumnVarNameInTable="columnSUPPER_STOCKIST" msprop:Generator_ColumnPropNameInRow="SUPPER_STOCKIST" msprop:Generator_ColumnPropNameInTable="SUPPER_STOCKISTColumn" msprop:Generator_UserColumnName="SUPPER_STOCKIST" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="45" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DISTRIBUTOR" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDISTRIBUTOR" msprop:Generator_ColumnPropNameInRow="DISTRIBUTOR" msprop:Generator_ColumnPropNameInTable="DISTRIBUTORColumn" msprop:Generator_UserColumnName="DISTRIBUTOR" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="93" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MATERIAL_NAME" msprop:Generator_ColumnVarNameInTable="columnMATERIAL_NAME" msprop:Generator_ColumnPropNameInRow="MATERIAL_NAME" msprop:Generator_ColumnPropNameInTable="MATERIAL_NAMEColumn" msprop:Generator_UserColumnName="MATERIAL_NAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OPENING_STOCK" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnOPENING_STOCK" msprop:Generator_ColumnPropNameInRow="OPENING_STOCK" msprop:Generator_ColumnPropNameInTable="OPENING_STOCKColumn" msprop:Generator_UserColumnName="OPENING_STOCK" type="xs:int" minOccurs="0" />
+              <xs:element name="PURCHASE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPURCHASE" msprop:Generator_ColumnPropNameInRow="PURCHASE" msprop:Generator_ColumnPropNameInTable="PURCHASEColumn" msprop:Generator_UserColumnName="PURCHASE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CLOSING_STOCK" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCLOSING_STOCK" msprop:Generator_ColumnPropNameInRow="CLOSING_STOCK" msprop:Generator_ColumnPropNameInTable="CLOSING_STOCKColumn" msprop:Generator_UserColumnName="CLOSING_STOCK" type="xs:int" minOccurs="0" />
+              <xs:element name="SALE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSALE" msprop:Generator_ColumnPropNameInRow="SALE" msprop:Generator_ColumnPropNameInTable="SALEColumn" msprop:Generator_UserColumnName="SALE" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable8" msprop:Generator_TableClassName="DataTable8DataTable" msprop:Generator_TableVarName="tableDataTable8" msprop:Generator_TablePropName="DataTable8" msprop:Generator_RowDeletingName="DataTable8RowDeleting" msprop:Generator_RowChangingName="DataTable8RowChanging" msprop:Generator_RowEvHandlerName="DataTable8RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable8RowDeleted" msprop:Generator_UserTableName="DataTable8" msprop:Generator_RowChangedName="DataTable8RowChanged" msprop:Generator_RowEvArgName="DataTable8RowChangeEvent" msprop:Generator_RowClassName="DataTable8Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MATERIAL_ID" msprop:Generator_ColumnVarNameInTable="columnMATERIAL_ID" msprop:Generator_ColumnPropNameInRow="MATERIAL_ID" msprop:Generator_ColumnPropNameInTable="MATERIAL_IDColumn" msprop:Generator_UserColumnName="MATERIAL_ID" type="xs:string" minOccurs="0" />
+              <xs:element name="MATERIAL_NAME" msprop:Generator_ColumnVarNameInTable="columnMATERIAL_NAME" msprop:Generator_ColumnPropNameInRow="MATERIAL_NAME" msprop:Generator_ColumnPropNameInTable="MATERIAL_NAMEColumn" msprop:Generator_UserColumnName="MATERIAL_NAME" type="xs:string" minOccurs="0" />
+              <xs:element name="MATERIAL_CODE" msprop:Generator_ColumnVarNameInTable="columnMATERIAL_CODE" msprop:Generator_ColumnPropNameInRow="MATERIAL_CODE" msprop:Generator_ColumnPropNameInTable="MATERIAL_CODEColumn" msprop:Generator_UserColumnName="MATERIAL_CODE" type="xs:string" minOccurs="0" />
+              <xs:element name="DISTRIBUTOR" msprop:Generator_ColumnVarNameInTable="columnDISTRIBUTOR" msprop:Generator_ColumnPropNameInRow="DISTRIBUTOR" msprop:Generator_ColumnPropNameInTable="DISTRIBUTORColumn" msprop:Generator_UserColumnName="DISTRIBUTOR" type="xs:string" minOccurs="0" />
+              <xs:element name="TARGET" msprop:Generator_ColumnVarNameInTable="columnTARGET" msprop:Generator_ColumnPropNameInRow="TARGET" msprop:Generator_ColumnPropNameInTable="TARGETColumn" msprop:Generator_UserColumnName="TARGET" type="xs:string" minOccurs="0" />
+              <xs:element name="MONTH" msprop:Generator_ColumnVarNameInTable="columnMONTH" msprop:Generator_ColumnPropNameInRow="MONTH" msprop:Generator_ColumnPropNameInTable="MONTHColumn" msprop:Generator_UserColumnName="MONTH" type="xs:string" minOccurs="0" />
+              <xs:element name="YEAR" msprop:Generator_ColumnVarNameInTable="columnYEAR" msprop:Generator_ColumnPropNameInRow="YEAR" msprop:Generator_ColumnPropNameInTable="YEARColumn" msprop:Generator_UserColumnName="YEAR" type="xs:string" minOccurs="0" />
+              <xs:element name="STOCKIST" msprop:Generator_ColumnVarNameInTable="columnSTOCKIST" msprop:Generator_ColumnPropNameInRow="STOCKIST" msprop:Generator_ColumnPropNameInTable="STOCKISTColumn" msprop:Generator_UserColumnName="STOCKIST" type="xs:string" minOccurs="0" />
+              <xs:element name="REGION" msprop:Generator_ColumnVarNameInTable="columnREGION" msprop:Generator_ColumnPropNameInRow="REGION" msprop:Generator_ColumnPropNameInTable="REGIONColumn" msprop:Generator_UserColumnName="REGION" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable9" msprop:Generator_TableClassName="DataTable9DataTable" msprop:Generator_TableVarName="tableDataTable9" msprop:Generator_TablePropName="DataTable9" msprop:Generator_RowDeletingName="DataTable9RowDeleting" msprop:Generator_RowChangingName="DataTable9RowChanging" msprop:Generator_RowEvHandlerName="DataTable9RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable9RowDeleted" msprop:Generator_UserTableName="DataTable9" msprop:Generator_RowChangedName="DataTable9RowChanged" msprop:Generator_RowEvArgName="DataTable9RowChangeEvent" msprop:Generator_RowClassName="DataTable9Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="REGION" msprop:Generator_ColumnVarNameInTable="columnREGION" msprop:Generator_ColumnPropNameInRow="REGION" msprop:Generator_ColumnPropNameInTable="REGIONColumn" msprop:Generator_UserColumnName="REGION" type="xs:string" minOccurs="0" />
+              <xs:element name="MATERIAL_GROUP" msprop:Generator_ColumnVarNameInTable="columnMATERIAL_GROUP" msprop:Generator_ColumnPropNameInRow="MATERIAL_GROUP" msprop:Generator_ColumnPropNameInTable="MATERIAL_GROUPColumn" msprop:Generator_UserColumnName="MATERIAL_GROUP" type="xs:string" minOccurs="0" />
+              <xs:element name="SHORT_NAME" msprop:Generator_ColumnVarNameInTable="columnSHORT_NAME" msprop:Generator_ColumnPropNameInRow="SHORT_NAME" msprop:Generator_ColumnPropNameInTable="SHORT_NAMEColumn" msprop:Generator_UserColumnName="SHORT_NAME" type="xs:string" minOccurs="0" />
+              <xs:element name="BILLED_COUNT" msprop:Generator_ColumnVarNameInTable="columnBILLED_COUNT" msprop:Generator_ColumnPropNameInRow="BILLED_COUNT" msprop:Generator_ColumnPropNameInTable="BILLED_COUNTColumn" msprop:Generator_UserColumnName="BILLED_COUNT" type="xs:int" minOccurs="0" />
+              <xs:element name="FROM_DATE" msprop:Generator_ColumnVarNameInTable="columnFROM_DATE" msprop:Generator_ColumnPropNameInRow="FROM_DATE" msprop:Generator_ColumnPropNameInTable="FROM_DATEColumn" msprop:Generator_UserColumnName="FROM_DATE" type="xs:string" minOccurs="0" />
+              <xs:element name="TO_DATE" msprop:Generator_ColumnVarNameInTable="columnTO_DATE" msprop:Generator_ColumnPropNameInRow="TO_DATE" msprop:Generator_ColumnPropNameInTable="TO_DATEColumn" msprop:Generator_UserColumnName="TO_DATE" type="xs:string" minOccurs="0" />
+              <xs:element name="REGION_TOTAL_DISTRIBUTOR" msprop:Generator_ColumnVarNameInTable="columnREGION_TOTAL_DISTRIBUTOR" msprop:Generator_ColumnPropNameInRow="REGION_TOTAL_DISTRIBUTOR" msprop:Generator_ColumnPropNameInTable="REGION_TOTAL_DISTRIBUTORColumn" msprop:Generator_UserColumnName="REGION_TOTAL_DISTRIBUTOR" type="xs:string" minOccurs="0" />
+              <xs:element name="TOTAL_DISTRIBUTOR" msprop:Generator_ColumnVarNameInTable="columnTOTAL_DISTRIBUTOR" msprop:Generator_ColumnPropNameInRow="TOTAL_DISTRIBUTOR" msprop:Generator_ColumnPropNameInTable="TOTAL_DISTRIBUTORColumn" msprop:Generator_UserColumnName="TOTAL_DISTRIBUTOR" type="xs:string" minOccurs="0" />
+              <xs:element name="STOCKIST" msprop:Generator_ColumnVarNameInTable="columnSTOCKIST" msprop:Generator_ColumnPropNameInRow="STOCKIST" msprop:Generator_ColumnPropNameInTable="STOCKISTColumn" msprop:Generator_UserColumnName="STOCKIST" type="xs:string" minOccurs="0" />
+              <xs:element name="ACTUAL_DISTRIBUTOR_COUNT" msprop:Generator_ColumnVarNameInTable="columnACTUAL_DISTRIBUTOR_COUNT" msprop:Generator_ColumnPropNameInRow="ACTUAL_DISTRIBUTOR_COUNT" msprop:Generator_ColumnPropNameInTable="ACTUAL_DISTRIBUTOR_COUNTColumn" msprop:Generator_UserColumnName="ACTUAL_DISTRIBUTOR_COUNT" type="xs:int" minOccurs="0" />
+              <xs:element name="TOTAL_ACTUAL_DISTRIBUTOR_COUNT" msprop:Generator_ColumnVarNameInTable="columnTOTAL_ACTUAL_DISTRIBUTOR_COUNT" msprop:Generator_ColumnPropNameInRow="TOTAL_ACTUAL_DISTRIBUTOR_COUNT" msprop:Generator_ColumnPropNameInTable="TOTAL_ACTUAL_DISTRIBUTOR_COUNTColumn" msprop:Generator_UserColumnName="TOTAL_ACTUAL_DISTRIBUTOR_COUNT" type="xs:int" minOccurs="0" />
+              <xs:element name="STOCKIST_STATUS" msprop:Generator_ColumnVarNameInTable="columnSTOCKIST_STATUS" msprop:Generator_ColumnPropNameInRow="STOCKIST_STATUS" msprop:Generator_ColumnPropNameInTable="STOCKIST_STATUSColumn" msprop:Generator_UserColumnName="STOCKIST_STATUS" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable10" msprop:Generator_TableClassName="DataTable10DataTable" msprop:Generator_TableVarName="tableDataTable10" msprop:Generator_TablePropName="DataTable10" msprop:Generator_RowDeletingName="DataTable10RowDeleting" msprop:Generator_RowChangingName="DataTable10RowChanging" msprop:Generator_RowEvHandlerName="DataTable10RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable10RowDeleted" msprop:Generator_UserTableName="DataTable10" msprop:Generator_RowChangedName="DataTable10RowChanged" msprop:Generator_RowEvArgName="DataTable10RowChangeEvent" msprop:Generator_RowClassName="DataTable10Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FROM_DATE" msprop:Generator_ColumnVarNameInTable="columnFROM_DATE" msprop:Generator_ColumnPropNameInRow="FROM_DATE" msprop:Generator_ColumnPropNameInTable="FROM_DATEColumn" msprop:Generator_UserColumnName="FROM_DATE" type="xs:string" minOccurs="0" />
+              <xs:element name="TO_DATE" msprop:Generator_ColumnVarNameInTable="columnTO_DATE" msprop:Generator_ColumnPropNameInRow="TO_DATE" msprop:Generator_ColumnPropNameInTable="TO_DATEColumn" msprop:Generator_UserColumnName="TO_DATE" type="xs:string" minOccurs="0" />
+              <xs:element name="REGION" msprop:Generator_ColumnVarNameInTable="columnREGION" msprop:Generator_ColumnPropNameInRow="REGION" msprop:Generator_ColumnPropNameInTable="REGIONColumn" msprop:Generator_UserColumnName="REGION" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

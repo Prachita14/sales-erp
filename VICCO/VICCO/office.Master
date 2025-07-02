@@ -1,0 +1,247 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="office.master.cs" Inherits="VICCO.office" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+    <title>Vicco Laboratories</title>
+    <link rel="icon" href="images/loggeduser.png" type="img/jpg" />
+    <link rel="stylesheet" href="../lib/Hover/hover.css" />
+    <link rel="stylesheet" href="../lib/fontawesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="../lib/weather-icons/css/weather-icons.css" />
+    <link rel="stylesheet" href="../lib/ionicons/css/ionicons.css" />
+    <link rel="stylesheet" href="../lib/jquery-toggles/toggles-full.css" />
+    <link rel="stylesheet" href="../lib/morrisjs/morris.css" />
+    <link rel="stylesheet" href="../css/quirk.css?v=09.07.2019" />
+    <link rel="stylesheet" href="../lib/jquery.steps/jquery.steps.css" />
+    <link rel="stylesheet" href="../lib/jquery-ui/jquery-ui.css">
+    <link rel="stylesheet" href="../lib/select2/select2.css">
+    <script src="alertifyjs/alertify.js" type="text/javascript"></script>
+    <link href="alertifyjs/css/alertify.css" rel="stylesheet" type="text/css" />
+    <link href="alertifyjs/css/themes/default.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../lib/modernizr/modernizr.js"></script>
+    <style type="text/css">
+        .control-label
+        {
+            padding-top: 10px;
+        }
+        #ctl00_ContentPlaceHolder1_ReportViewer1_ctl05
+        {
+            position: absolute;
+            width: 96%;
+            z-index: 9;
+        }
+        #ctl00_ContentPlaceHolder1_ReportViewer1_ctl09
+        {
+            margin-top: 30px;
+        }
+        #ctl00_ContentPlaceHolder1_ReportViewer2_ctl05
+        {
+            position: absolute;
+            width: 96%;
+            z-index: 9;
+        }
+        #ctl00_ContentPlaceHolder1_ReportViewer2_ctl09
+        {
+            margin-top: 30px;
+        }
+        #ctl00_ContentPlaceHolder1_ReportViewer1
+        {
+            margin-top: 10px;
+        }
+        
+        #material
+        {
+            width: auto;
+            float: left;
+            margin-bottom: 10px;
+        }
+        
+         .alert-success
+        {
+            width: auto;
+            margin-left: 5px;
+            padding: 5px;
+        }
+        .close
+        {
+            float: none;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div class="headerpanel">
+        <div class="logopanel">
+            <h2>
+                <a href="Home.aspx" style="margin-left: 40px;">
+                    <img src="images/vicco_logo.png" alt="logo" width="60%" /></a></h2>
+        </div>
+        <!-- logopanel -->
+        <div class="headerbar">
+            <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+            <div class="header-right">
+                <ul class="headermenu">
+                    <li>
+                        <asp:linkbutton id="LinkButton1" runat="server" xmlns:asp="#unknown" class="btn btn-default"
+                            causesvalidation="false" onclientclick="JavaScript: window.history.back(1); return false;"
+                            style="background-color: #830508; margin-right: 20px; height: auto; margin-top: 15px;
+                            width: 80px;">Back</asp:linkbutton>
+                        <%--<asp:button id="Button1" runat="server" text="Back" xmlns:asp="#unknown" class="btn btn-default"
+                            causesvalidation="false" onclientclick="JavaScript: window.history.back(1); return false;"
+                            style="background-color: #830508; margin-right: 20px; height: auto; margin-top: 15px;
+                            width: 80px;" />--%>
+                    </li>
+                    <li>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-logged" data-toggle="dropdown">
+                                <img src="images/loggeduser.png" alt="" />
+                                Vicco <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a href="ResetPassword.aspx"><i class="fa fa-cog"></i>Account Settings</a></li>
+                                <li>
+                                    <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click" CausesValidation="false"><i class="fa fa-sign-out"></i> Log Out</asp:LinkButton></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- header-right -->
+        </div>
+        <!-- headerbar -->
+    </div>
+    <section>
+  <div class="leftpanel">
+    <div class="leftpanelinner">      
+      <div class="tab-content">
+        <!-- ################# MAIN MENU ################### -->
+        <div class="tab-pane active" id="mainmenu">         
+          <ul class="nav nav-pills nav-stacked nav-quirk">
+            <li class="active"><a href="Home.aspx"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>         
+
+          <li runat="server" id="Li4" class="nav-parent"><a href=""><i class="fa fa-file-text"></i> <span>Sales Report</span></a>
+              <ul class="children">               
+                <li><a href="CriteriaReportAdmin.aspx">Sales Register</a></li>
+                <li><a href="SalesSummary.aspx">Sales Summary</a></li>
+                <li><a href="PriceReport.aspx">Price</a></li>
+                <li><a href="SaleStockReport.aspx">Stock And Sale</a></li>
+                <li><a href="SaleStockDistributor.aspx">Stock And Sale Secondary</a></li>
+                <li><a href="SecondSaleReportQuantity.aspx">Product wise secondary sale report (Quantity)</a></li>
+                <li><a href="SecondSaleReportValue.aspx">Product wise secondary sale report (Value)</a></li>
+                  <li><a href="SecondSaleReportQuantityNew.aspx">Product wise secondary sale report (Quantity) <span class="text-danger"> New</span></a></li>
+                <li><a href="SecondSaleReportValueNew.aspx">Product wise secondary sale report (Value) <span class="text-danger"> New</span></a></li>
+                <li><a href="PartyWiseSaleReportQuantity.aspx">Party wise sale quantity details</a></li>
+                <li><a href="PartyWiseSaleReportValue.aspx">Party wise sale value details</a></li>
+                <li><a href="ItemWiseSecondSaleReport.aspx">Item wise second sale report</a></li>
+                <li><a href="StateSecondaryReport.aspx">State Wise Secondary Report</a></li>
+                  <li><a href="StockistBilledReport.aspx">Stockist Billed Report</a></li>
+                <li><a href="BilledReport.aspx">Billed Report</a></li>
+              </ul>
+            </li>  
+              
+              <li runat="server" id="Li1" class="nav-parent"><a href=""><i class="fa fa-file-text"></i> <span>Target Report</span></a>
+              <ul class="children">
+                <li><a href="TargetReport.aspx">Target report</a></li>
+                <li><a href="TargetvsSale.aspx">Target Vs Sale</a></li>
+              </ul>
+            </li>
+                
+           <li runat="server" id="gst">
+           <a href="DisplayReport.aspx"><i class="fa fa-file-text"></i>
+            <span>Display Report</span></a> 
+           </li>   
+              
+             <li runat="server" id="Li8">
+             <a href="HeadReport.aspx"><i class="fa fa-file-text"></i>
+              <span>Product Head Report</span></a> 
+             </li>
+
+             <li runat="server" id="Li2" class="nav-parent"><a href=""><i class="fa fa-file-text"></i> <span>Secondary Report</span></a>
+               <ul class="children">
+                 <li><a href="SecondaryCumulativeReport.aspx">Secondary Cumulative Sale</a></li>
+                 <li><a href="StateValueWiseReport.aspx">State-Wise Value-Wise Secondary Sale</a></li>
+                 <li><a href="ProductValueWiseReport.aspx">Product-Wise Value-Wise Secondary Sale</a></li>
+                 <li><a href="ProductQtyWiseReport.aspx">Product-Wise Qty-Wise Secondary Sale</a></li>
+                <%--<li><a href="ProductStateWiseReport.aspx">Product-Wise & State-Wise Secondary Report(Value)</a></li>
+                 <li><a href="ProductStateWiseSecondaryReport.aspx">Product-Wise & State-Wise Secondary Report(Quantity)</a></li>--%>
+                    <li><a href="ProductStateWiseReportNew.aspx">Product-Wise & State-Wise Secondary Report(Value)</a></li>
+                 <li><a href="ProductStateWiseReportQtyNew.aspx">Product-Wise & State-Wise Secondary Report(Quantity)</a></li>
+               </ul>
+             </li> 
+
+             <li runat="server" id="Li3">
+             <a href="ProductwisePerformanceReport.aspx"><i class="fa fa-file-text"></i>
+              <span>Qty Performance</span></a> 
+             </li>
+              <li runat="server" id="Li5" class="nav-parent"><a href=""><i class="fa fa-users"></i> <span>Employee Master</span></a>
+              <ul class="children">
+                <li><a href="EmployeeMaster.aspx">Add Employee</a></li>
+                <li><a href="EmployeeMasterReport.aspx">Employee Report</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- tab-pane -->
+      </div><!-- tab-content -->
+    </div><!-- leftpanelinner -->
+  </div><!-- leftpanel -->
+
+  <!-- mainpanel -->
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </section>
+    <script src="js/jquery-3.3.1.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../lib/jquery-ui/jquery-ui.js"></script>
+    <script type="text/javascript" src="../lib/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../lib/jquery-toggles/toggles.js"></script>
+    <script type="text/javascript" src="../lib/morrisjs/morris.js"></script>
+    <script type="text/javascript" src="../lib/raphael/raphael.js"></script>
+    <script type="text/javascript" src="../lib/flot/jquery.flot.js"></script>
+    <script type="text/javascript" src="../lib/flot/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="../lib/flot-spline/jquery.flot.spline.js"></script>
+    <script type="text/javascript" src="../lib/jquery-knob/jquery.knob.js"></script>
+    <script type="text/javascript" src="../js/quirk.js"></script>
+    <script src="../lib/jquery-autosize/autosize.js"></script>
+    <script src="../lib/select2/select2.js"></script>
+   
+   <script type="text/javascript">
+
+       $(function () {
+           $("select").select2({ tags: true });
+       });
+
+       function auto() {
+           $("select").select2({ tags: true });
+
+           $('#ContentPlaceHolder1_grdReport').DataTable({
+               dom: 'Bfrtip',
+               buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+           });
+
+       };
+
+       $(document).ready(function () {
+
+           'use strict';
+
+           $('#ContentPlaceHolder1_grdReport').DataTable({
+               dom: 'Bfrtip',
+               buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+           });
+       });
+
+    </script>
+
+    </form>
+</body>
+</html>
